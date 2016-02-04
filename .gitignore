@@ -1,4 +1,6 @@
 *.pyc 
 *.sqlite
 *.egg-info
-.cache
+/.cache/
+/dist/
+/build/
