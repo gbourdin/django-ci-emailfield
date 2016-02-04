@@ -6,7 +6,7 @@ Really simple Django ORM field for case insensitive email addresses
 See https://groups.google.com/d/msg/django-developers/SW7_qI81G58/Mdw65BhEBAAJ
 
 
-Usage:
+Usage::
 
     from django.db import models
     from django_ciemailfield import CiEmailField
