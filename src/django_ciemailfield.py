@@ -26,6 +26,7 @@ class CiEmailField(EmailField):
 
     def get_db_prep_value(self, value, connection, prepared=False):
         if connection.vendor != 'postgresql':
-            value = value.lower()
+            if isinstance(value, basestring):  # value might be None
+                value = value.lower()
         return super(CiEmailField, self).get_db_prep_value(
             value, connection, prepared)
