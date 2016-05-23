@@ -4,6 +4,23 @@ from django.db.models.signals import pre_migrate
 from django.dispatch import receiver
 
 
+# Python 2/3 compatibility. Credit to https://github.com/oxplot/fysom/issues/1
+try:
+    unicode = unicode
+except NameError:
+    # 'unicode' is undefined, must be Python 3
+    str = str
+    unicode = str
+    bytes = bytes
+    basestring = (str, bytes)
+else:
+    # 'unicode' exists, must be Python 2
+    str = str
+    unicode = unicode
+    bytes = str
+    basestring = basestring
+
+
 @receiver(pre_migrate)
 def setup_postgres_extensions(sender, **kwargs):
     conn = connections[kwargs['using']]
